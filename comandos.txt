@@ -1,0 +1,13 @@
+//criando projeto
+dotnet new webapi -o nomeProjeto
+
+dotnet add package Flunt -v 2.0.5
+dotnet add package Microsoft.EntityFrameworkCore -v 7.0.2
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore -v 6.0.13
+dotnet add package Asp.Versioning.Mvc -v 6.0.0
+dotnet add package Evolve -v 3.2.0
+dotnet add package Serilog -v 3.1.1
+dotnet add package Serilog.AspNetCore -v 7.0.0
+dotnet add package Serilog.Sinks.Console -v 5.0.1
+dotnet add package Serilog.Sinks.MySQL -v 4.6.0
+dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0

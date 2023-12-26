@@ -1,0 +1,1 @@
+INSERT INTO BOOKS (id, title, author) VALUES (NULL, 'Senhor dos Aneis', 'Tolkien');

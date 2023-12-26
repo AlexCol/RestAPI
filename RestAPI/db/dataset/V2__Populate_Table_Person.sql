@@ -1,0 +1,1 @@
+INSERT INTO PERSON (id, first_name, last_name, gender, address) VALUES (NULL, 'Alexandre', 'Coletti', 'Masc', 'rua qualquer');
