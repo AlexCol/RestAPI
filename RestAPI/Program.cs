@@ -1,6 +1,8 @@
 using EvolveDb;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using RestAPI.Hypermedia.Enricher;
+using RestAPI.Hypermedia.Filters;
 using Serilog;
 using Serilog.Events;
 
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 //! Add services to the container.
 builder.Services.AddControllers();
+
+//? custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //!ativando serilog
 //+bem no topo, pois qualquer solicitação acima dele que use o log, não vai pegar o log
@@ -52,6 +56,13 @@ builder.Services.AddMvc(options =>
 })
 .AddXmlSerializerFormatters();
 
+//! injetando dependencias para uso de HATEOAS
+var filterOptions = new HyperMediaFilterOptions();
+filterOptions.ContentRsponseEnticherList.Add(new PersonEnricher());
+builder.Services.AddSingleton(filterOptions);
+
+//? custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //! Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -70,6 +81,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//? custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.MapControllerRoute("DefaultApi", "api/v{version=apiVersion}/{controller=values}/{id?}");
+//? custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.Run();
 

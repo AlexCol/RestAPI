@@ -8,10 +8,10 @@
     ".NETCoreApp,Version=v6.0": {
       "RestAPI/1.0.0": {
         "dependencies": {
-          "Asp.Versioning.Mvc": "6.0.0",
           "Evolve": "3.2.0",
           "Flunt": "2.0.5",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.13",
+          "Microsoft.AspNetCore.Mvc.Versioning": "5.1.0",
           "Microsoft.EntityFrameworkCore": "7.0.2",
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0",
           "Serilog": "3.1.1",
@@ -22,39 +22,6 @@
         },
         "runtime": {
           "RestAPI.dll": {}
-        }
-      },
-      "Asp.Versioning.Abstractions/6.0.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "7.0.0"
-        },
-        "runtime": {
-          "lib/net6.0/Asp.Versioning.Abstractions.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.8271.1211"
-          }
-        }
-      },
-      "Asp.Versioning.Http/6.0.0": {
-        "dependencies": {
-          "Asp.Versioning.Abstractions": "6.0.0"
-        },
-        "runtime": {
-          "lib/net6.0/Asp.Versioning.Http.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.8271.1212"
-          }
-        }
-      },
-      "Asp.Versioning.Mvc/6.0.0": {
-        "dependencies": {
-          "Asp.Versioning.Http": "6.0.0"
-        },
-        "runtime": {
-          "lib/net6.0/Asp.Versioning.Mvc.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.8271.1212"
-          }
         }
       },
       "BouncyCastle.NetCore/1.8.5": {
@@ -151,6 +118,14 @@
           "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
             "assemblyVersion": "6.0.13.0",
             "fileVersion": "6.0.1322.58013"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Versioning/5.1.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {
+            "assemblyVersion": "5.1.0.0",
+            "fileVersion": "5.1.8270.41513"
           }
         }
       },
@@ -843,27 +818,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Asp.Versioning.Abstractions/6.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Kc4g1a4Wo7W7cVrPF5F5JzSOFItZH7jQiVEX8DvCmJ5TXe0i1LotZhzbqBMUYRkhrivR+GPnlceh9E/xohJlDQ==",
-      "path": "asp.versioning.abstractions/6.0.0",
-      "hashPath": "asp.versioning.abstractions.6.0.0.nupkg.sha512"
-    },
-    "Asp.Versioning.Http/6.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-V+4MsRXzn26FBzLXhqNNfAJJfyCAwqLJZNjYu/vrZKZ2W3q24R8MuFXZUdq27cLLlVn3In0ngdMXFoFxLgCQvw==",
-      "path": "asp.versioning.http/6.0.0",
-      "hashPath": "asp.versioning.http.6.0.0.nupkg.sha512"
-    },
-    "Asp.Versioning.Mvc/6.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-fMcYYcGUvIe9UfQv3RfmPvmk64f3n4QutZll4c2jIqmVqax7r1M7yiHY7v9kLolSO9bYqP4xhhS3I3elbz0m+A==",
-      "path": "asp.versioning.mvc/6.0.0",
-      "hashPath": "asp.versioning.mvc.6.0.0.nupkg.sha512"
-    },
     "BouncyCastle.NetCore/1.8.5": {
       "type": "package",
       "serviceable": true,
@@ -933,6 +887,13 @@
       "sha512": "sha512-CDsVEJAFK5i0CCd5GiicuxIrayU6pKNrGy0GD+wZMPxv33PePpA2K8qoao8Az6UZ9EYhKMtIyWNN4X5KXZXW/g==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.13",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.6.0.13.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.Versioning/5.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UX8w9BlCiZpr6Ox4YAve1w0CkI1CAovukGNzKd7v0+5pZc8lzuG5tRovucr1RWIKHs0E/Yx8563CN7KzaB3bpw==",
+      "path": "microsoft.aspnetcore.mvc.versioning/5.1.0",
+      "hashPath": "microsoft.aspnetcore.mvc.versioning.5.1.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",

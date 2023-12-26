@@ -1,13 +1,40 @@
 //criando projeto
-dotnet new webapi -o nomeProjeto
+dotnet new webapi - o nomeProjeto
 
 dotnet add package Flunt -v 2.0.5
 dotnet add package Microsoft.EntityFrameworkCore -v 7.0.2
 dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore -v 6.0.13
-dotnet add package Asp.Versioning.Mvc -v 6.0.0
+--dotnet add package Microsoft.AspNetCore.Mvc.Versioning -v 5.1.0 (se usando dotnet 6)
+--dotnet add package Asp.Versioning.Mvc -v 6.0.0 (se usando dotnet 8)
 dotnet add package Evolve -v 3.2.0
 dotnet add package Serilog -v 3.1.1
 dotnet add package Serilog.AspNetCore -v 7.0.0
 dotnet add package Serilog.Sinks.Console -v 5.0.1
 dotnet add package Serilog.Sinks.MySQL -v 4.6.0
 dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0
+
+//*processos sessão 07*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-criada pasta Hypermedia (onde ficam as coisas relacionadas as HATEOAS)
+--criada subpasta Abstract
+---ali criada uma interface chamada IResponseEnricher
+---ali criada uma interface chamada ISupporstHypermedia
+--criada subpasta Constants
+---criada uma classe chamada HttpActionVerb
+---criada uma classe chamada RelationType
+---criada uma classe chamada ResponseTypeFormat
+--criada subpasta Filters (com classes responsaveis para realizar a inclusão nos links nas responses)
+---criada uma classe chamada HyperMediaFilterOptions
+---criada uma classe chamada HyperMediaFilter
+--dentro de Hypermedia, criada nova classe, chamada HyperMediaLink
+--dentro de Hypermedia, criada nova classe, chamada ContentResponseEnricher
+
+-realizado ajuste em PersonVO para suporte a ISupporstHypermedia.
+
+-volta para pasta Hypermedia
+--criada subpasta Enricher
+---então é necessário adicionar um enricher para cada classe que irá usuar Hypermedia
+---criada classe PersonEnricher
+
+-realizado ajuste em Program.cs para ajustar as injeções de dependencia (observações com '//! injetando dependencias para uso de HATEOAS')
+
+-realizado ajuste em PersonController, adicionando [TypeFilter(typeof(HyperMediaFilter))] abaixo de cada anotação http, exceto DELETE

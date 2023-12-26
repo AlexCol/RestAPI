@@ -1,12 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "rld9lFmbYeFRuPgNqa+CYCDCqyHdAPigA6j60Uaszg20/kkdbRa9dw8SCHDAhGaxg3OSNYSUBaTvtLnrfP4rIg==",
+  "dgSpecHash": "TIYpFb4492ltbhBb1tBsMWf0wWfCFAI/aBDNKcwKKrpmsavPwjBoLTMDD5ZQLR5n8VyhWTEHaHFo6mdTlqzQPw==",
   "success": true,
   "projectFilePath": "D:\\meusRepos\\AulaRestAspNet2\\RestAPI\\RestAPI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Alexandre\\.nuget\\packages\\asp.versioning.abstractions\\6.0.0\\asp.versioning.abstractions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Alexandre\\.nuget\\packages\\asp.versioning.http\\6.0.0\\asp.versioning.http.6.0.0.nupkg.sha512",
-    "C:\\Users\\Alexandre\\.nuget\\packages\\asp.versioning.mvc\\6.0.0\\asp.versioning.mvc.6.0.0.nupkg.sha512",
     "C:\\Users\\Alexandre\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Alexandre\\.nuget\\packages\\evolve\\3.2.0\\evolve.3.2.0.nupkg.sha512",
     "C:\\Users\\Alexandre\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
@@ -17,6 +14,7 @@
     "C:\\Users\\Alexandre\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.13\\microsoft.aspnetcore.cryptography.internal.6.0.13.nupkg.sha512",
     "C:\\Users\\Alexandre\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.13\\microsoft.aspnetcore.cryptography.keyderivation.6.0.13.nupkg.sha512",
     "C:\\Users\\Alexandre\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.13\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.13.nupkg.sha512",
+    "C:\\Users\\Alexandre\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.1.0\\microsoft.aspnetcore.mvc.versioning.5.1.0.nupkg.sha512",
     "C:\\Users\\Alexandre\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Alexandre\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "C:\\Users\\Alexandre\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.2\\microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",

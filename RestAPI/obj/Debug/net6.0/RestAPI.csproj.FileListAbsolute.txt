@@ -93,9 +93,6 @@ D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\RestAPI.deps.json
 D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\RestAPI.runtimeconfig.json
 D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\RestAPI.dll
 D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\RestAPI.pdb
-D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\Asp.Versioning.Abstractions.dll
-D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\Asp.Versioning.Http.dll
-D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\Asp.Versioning.Mvc.dll
 D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\Evolve.dll
 D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\Flunt.dll
@@ -174,3 +171,4 @@ D:\meusRepos\AulaRestAspNet2\RestAPI\obj\Debug\net6.0\refint\RestAPI.dll
 D:\meusRepos\AulaRestAspNet2\RestAPI\obj\Debug\net6.0\RestAPI.pdb
 D:\meusRepos\AulaRestAspNet2\RestAPI\obj\Debug\net6.0\RestAPI.genruntimeconfig.cache
 D:\meusRepos\AulaRestAspNet2\RestAPI\obj\Debug\net6.0\ref\RestAPI.dll
+D:\meusRepos\AulaRestAspNet2\RestAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Versioning.dll
