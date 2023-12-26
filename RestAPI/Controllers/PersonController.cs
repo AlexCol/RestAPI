@@ -16,12 +16,22 @@ public class PersonController : ControllerBase
     }
 
     [HttpGet()]
+    //!anotação abaixo é para uso do swagger
+    [ProducesResponseType((200), Type = typeof(List<PersonVO>))]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult FindAll()
     {
         return Ok(_personBusiness.FindAll());
     }
     [HttpGet("{id}")]
+    //!anotação abaixo é para uso do swagger
+    [ProducesResponseType((200), Type = typeof(PersonVO))]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult FindById(long id)
     {
@@ -29,6 +39,10 @@ public class PersonController : ControllerBase
         return person == null ? NotFound() : Ok(person);
     }
     [HttpPost()]
+    //!anotação abaixo é para uso do swagger
+    [ProducesResponseType((200), Type = typeof(PersonVO))]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Create([FromBody] PersonVO personBody)
     {
@@ -39,6 +53,10 @@ public class PersonController : ControllerBase
         );
     }
     [HttpPut()]
+    //!anotação abaixo é para uso do swagger
+    [ProducesResponseType((200), Type = typeof(PersonVO))]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Update([FromBody] PersonVO personBody)
     {
@@ -50,6 +68,8 @@ public class PersonController : ControllerBase
         return Ok(person);
     }
     [HttpDelete("{id}")]
+    //!anotação abaixo é para uso do swagger
+    [ProducesResponseType(204)]
     public IActionResult Delete(long Id)
     {
         _personBusiness.Delete(Id);
