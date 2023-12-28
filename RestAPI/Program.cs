@@ -83,6 +83,15 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 builder.Services.AddRouting(opt => opt.LowercaseUrls = true); //!para que fique tudo em minusculo os links no swagger
+
+//! adicionando liberação para que se permita o consumo da API por outra origem que não C# e fora do dominio
+builder.Services.AddCors(opt => opt.AddDefaultPolicy(build =>
+{
+    build
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+}));
 //? custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //! Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -99,6 +108,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//? custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//! para uso do cors, precisa ser declarado após UseHttpsRedirection()
+app.UseCors();
+//? custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.UseAuthorization();
 
