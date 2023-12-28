@@ -13,7 +13,7 @@ dotnet add package Serilog.Sinks.Console -v 5.0.1
 dotnet add package Serilog.Sinks.MySQL -v 4.6.0
 dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0
 
-//*processos sessão 07*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//*processos sessão 16(Hateoas)*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -criada pasta Hypermedia (onde ficam as coisas relacionadas as HATEOAS)
 --criada subpasta Abstract
 ---ali criada uma interface chamada IResponseEnricher
@@ -38,3 +38,17 @@ dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0
 -realizado ajuste em Program.cs para ajustar as injeções de dependencia (observações com '//! injetando dependencias para uso de HATEOAS')
 
 -realizado ajuste em PersonController, adicionando [TypeFilter(typeof(HyperMediaFilter))] abaixo de cada anotação http, exceto DELETE
+
+//*processos sessão 19(Autenticação)*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer -v 6.0.25
+-Na pasta db, criados dois arquivos para a Migration da tabale user e primeira carga
+-Na pasta Model, criada a classe User
+-Adicionada no DBContext a tabela User
+-Criada uma Repository especifica para o tratamento de User (IUserRepository e UserRepository)
+--Criada UserVO para trafego das informações pelo endopoint
+-Criada uma pasta na raiz, com nome de Configurations para parametrizar o token
+--Criada classe tokenConfiguration
+--adicionado em appsettings os parametros TokenConfiguration
+-Criada uma pasta em Services para criar classes referentes a criptografia
+--criada interface ITokenService
+--criada classe TokenService com as implementações

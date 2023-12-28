@@ -8,6 +8,7 @@ public class MySqlContext : DbContext
     public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) { }
 
     public DbSet<Person> Persons { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
