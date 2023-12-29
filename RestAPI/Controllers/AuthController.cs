@@ -18,7 +18,7 @@ public class AuthController : ControllerBase
         _login = login;
     }
 
-    [HttpPost()]
+    [HttpPost]
     [Route("signin")]
     public IActionResult Signin([FromBody] UserVO user)
     {
@@ -27,8 +27,34 @@ public class AuthController : ControllerBase
 
         var token = _login.ValidadeCredentials(user);
         if (token == null)
-            return BadRequest("Senha ou usuário invalidos.");
+            return Unauthorized("Senha ou usuário invalidos.");
 
         return Ok(token);
+    }
+    [HttpPost]
+    [Route("refresh")]
+    public IActionResult Refresh([FromBody] TokenVO tokenVO)
+    {
+        if (tokenVO == null)
+            return BadRequest("Solicitação invalida.");
+
+        var token = _login.ValidadeCredentials(tokenVO);
+        if (token == null)
+            return BadRequest("Erro ao regerar o token.");
+
+        return Ok(token);
+    }
+
+    [HttpGet]
+    [Authorize]
+    [Route("revoke")]
+    public IActionResult Revoke()
+    {
+        var userName = User.Identity.Name; //devido ao Authorize, ele já consegue buscar o usuário
+        var result = _login.RevokeToken(userName);
+        if (!result)
+            return BadRequest("Erro ao revogar o token");
+
+        return Ok("Token revogado.");
     }
 }

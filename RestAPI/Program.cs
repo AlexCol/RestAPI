@@ -130,7 +130,8 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = tokenConfiguration.Issuer,
         ValidAudience = tokenConfiguration.Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfiguration.Secret))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfiguration.Secret)),
+        ClockSkew = TimeSpan.Zero //tempo de tolerancia após o tempo terminar
     };
 });
 

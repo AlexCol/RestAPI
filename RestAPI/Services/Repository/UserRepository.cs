@@ -18,8 +18,12 @@ public class UserRepository : IUserRepository
     public User ValidadeCredentials(UserVO user)
     {
         var pass = ComputeHash(user.Password, SHA256.Create());
-        Log.Information(pass);
         return _context.Users.FirstOrDefault(u => (u.UserName == user.UserName) && (u.Password == pass));
+    }
+
+    public User ValidadeCredentials(string userName)
+    {
+        return _context.Users.SingleOrDefault(u => u.UserName == userName);
     }
 
     public User RefreshUserInfo(User user)
@@ -31,6 +35,17 @@ public class UserRepository : IUserRepository
         _context.SaveChanges();
 
         return result;
+    }
+
+    public bool RevokeToken(string userName)
+    {
+        var user = _context.Users.SingleOrDefault(u => u.UserName == userName);
+        if (user == null) return false;
+
+        user.RefreshToken = null;
+        _context.SaveChanges();
+        return true;
+
     }
 
     public List<Claims> ListUserClaims(User user)

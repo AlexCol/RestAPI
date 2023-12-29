@@ -21,6 +21,14 @@ public class MySqlContext : DbContext //IdentityDbContext<IdentityUser> =>esse p
         modelBuilder.Entity<Person>()
             .Property(p => p.FirstName).IsRequired();
 
+        modelBuilder.Entity<User>()
+            .Property(u => u.UserName)
+            .IsRequired();
+        modelBuilder.Entity<User>()
+            .HasIndex(u => u.UserName)
+            .HasDatabaseName("uk_user_name")
+            .IsUnique(true);
+
         modelBuilder.Entity<Claims>()
             .Property("UserId")
             .IsRequired();

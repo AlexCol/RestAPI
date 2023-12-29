@@ -55,6 +55,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer -v 6.0.25
 -Em Data/VO, criada a classe TokenVO para usar no trafego do token
 -Em Services/Business criada a classe e interface para regras de autenticação (ILogin e Login)
 -Então em Program adicionado as dependencias de login
+-Criado em Controllers a classe AuthController para controle da criação e atualização do token (deixando a anotação para uso dela sem autenticação)
 
 
 
