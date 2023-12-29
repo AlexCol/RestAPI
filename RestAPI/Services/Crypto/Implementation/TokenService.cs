@@ -33,9 +33,9 @@ public class TokenService : ITokenService
         string tokenString = tokenHandler.WriteToken(options);
         Log.Information($"Token1: {tokenString}");
         return tokenString;
+        //Log.Error(tokenString);
 
-
-        /* outra forma de fazer
+        /* //outra forma de fazer
                 List<Claim> claimsList = new List<Claim>();
                 foreach (Claim item in _claims)
                 {
@@ -49,14 +49,15 @@ public class TokenService : ITokenService
                     Audience = _configuration.Audience,
                     Subject = subject,
                     SigningCredentials = signingCredentials,
-                    Expires = DateTime.Now.AddMinutes(_configuration.Minutes)
+                    Expires = DateTime.UtcNow.AddMinutes(_configuration.Minutes)
                 };
 
                 var tokenHandler2 = new JwtSecurityTokenHandler();
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 var tokenString2 = tokenHandler2.WriteToken(token);
                 Log.Information($"Token2: {tokenString2}");
-                return tokenString2;
+                //return tokenString2;
+                Log.Error(tokenString2);
         */
     }
 

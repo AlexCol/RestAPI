@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestAPI.Hypermedia.Filters;
 
 [ApiVersion("1")]
+[Authorize(Policy = "AdminPolicy")] // =>por padrão já barra devido a configuração na program, mas com isso se consegue colocar mais uma trava, para casos de roles especificas
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]
 public class PersonController : ControllerBase

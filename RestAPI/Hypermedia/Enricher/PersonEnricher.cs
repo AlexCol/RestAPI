@@ -1,8 +1,6 @@
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using RestAPI.Hypermedia.Constants;
 using RestAPI.Hypermedia.Extensions;
-using Serilog;
 
 namespace RestAPI.Hypermedia.Enricher
 {

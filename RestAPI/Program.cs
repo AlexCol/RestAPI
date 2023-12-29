@@ -1,11 +1,21 @@
-using System.Security.Policy;
+using System.Text;
 using EvolveDb;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MySql.Data.MySqlClient;
+using RestAPI.Configurations;
 using RestAPI.Hypermedia.Enricher;
 using RestAPI.Hypermedia.Filters;
+using RestAPI.Services.Business;
+using RestAPI.Services.Business.Implementations;
+using RestAPI.Services.Crypto;
+using RestAPI.Services.Crypto.Implementation;
+using RestAPI.Services.Repository;
 using Serilog;
 using Serilog.Events;
 
@@ -92,7 +102,52 @@ builder.Services.AddCors(opt => opt.AddDefaultPolicy(build =>
         .AllowAnyHeader()
         .AllowAnyMethod();
 }));
+
+//! adicionando dependencias para login
+builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddScoped<ILoggin, Loggin>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+var tokenConfiguration = new TokenConfiguration();
+new ConfigureFromConfigurationOptions<TokenConfiguration>(
+    builder.Configuration.GetSection("TokenConfiguration")
+).Configure(tokenConfiguration);
+
+builder.Services.AddSingleton(tokenConfiguration);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = tokenConfiguration.Issuer,
+        ValidAudience = tokenConfiguration.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfiguration.Secret))
+    };
+});
+
+builder.Services.AddAuthorization(auth =>
+{
+    auth.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+        .RequireAuthenticatedUser()
+        .Build();
+
+    auth.AddPolicy("AdminPolicy", a =>
+        a.RequireAuthenticatedUser().RequireClaim("Role", "Admin"));
+});
+
 //? fim custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 //! Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -112,6 +167,9 @@ app.UseHttpsRedirection();
 //? inicio custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //! para uso do cors, precisa ser declarado após UseHttpsRedirection()
 app.UseCors();
+
+//! adicionando dependencias para login
+app.UseAuthentication(); //!deve vir antes de pp.UseAuthorization(); e principalmente se desejar usar alguma policy pra controle de acesso (tipo por papel: ex admin)
 //? fim custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.UseAuthorization();

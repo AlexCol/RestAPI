@@ -1,5 +1,4 @@
 using System.Text;
-using Google.Protobuf.WellKnownTypes;
 
 namespace RestAPI.Hypermedia
 {

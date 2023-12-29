@@ -1,7 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using RestAPI.Hypermedia.Constants;
-using Serilog;
 
 namespace RestAPI.Hypermedia.Extensions
 {

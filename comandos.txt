@@ -42,13 +42,24 @@ dotnet add package Pomelo.EntityFrameworkCore.MySql --version 7.0.0
 //*processos sessão 19(Autenticação)*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer -v 6.0.25
 -Na pasta db, criados dois arquivos para a Migration da tabale user e primeira carga
--Na pasta Model, criada a classe User
+-Na pasta Model, criada a classe User (para uso do acesso em si, login e senha)
 -Adicionada no DBContext a tabela User
 -Criada uma Repository especifica para o tratamento de User (IUserRepository e UserRepository)
 --Criada UserVO para trafego das informações pelo endopoint
 -Criada uma pasta na raiz, com nome de Configurations para parametrizar o token
 --Criada classe tokenConfiguration
 --adicionado em appsettings os parametros TokenConfiguration
--Criada uma pasta em Services para criar classes referentes a criptografia
+-Criada uma pasta Crypto em Services para criar classes referentes ao token
 --criada interface ITokenService
 --criada classe TokenService com as implementações
+-Em Data/VO, criada a classe TokenVO para usar no trafego do token
+-Em Services/Business criada a classe e interface para regras de autenticação (ILogin e Login)
+-Então em Program adicionado as dependencias de login
+
+
+
+/*por conta*/
+criada classe Claims
+ajustado em db context a validação dela e criação da chave (principalmente para uso de migrations)
+adicionados comandos para criação da tabela e primeira carga para migration manual
+-adicionada função em UserRepository para buscar as Claims do usuário

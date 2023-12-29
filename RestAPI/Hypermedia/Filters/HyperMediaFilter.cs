@@ -1,7 +1,5 @@
-using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using RestAPI.Hypermedia.Abstract;
 
 namespace RestAPI.Hypermedia.Filters
 {

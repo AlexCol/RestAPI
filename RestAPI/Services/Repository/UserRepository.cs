@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using RestAPI.Data.VO;
+using RestAPI.Model;
+using Serilog;
 
 namespace RestAPI.Services.Repository;
 
@@ -20,6 +18,7 @@ public class UserRepository : IUserRepository
     public User ValidadeCredentials(UserVO user)
     {
         var pass = ComputeHash(user.Password, SHA256.Create());
+        Log.Information(pass);
         return _context.Users.FirstOrDefault(u => (u.UserName == user.UserName) && (u.Password == pass));
     }
 
@@ -34,10 +33,15 @@ public class UserRepository : IUserRepository
         return result;
     }
 
-    private string ComputeHash(string password, SHA256 sHA256)
+    public List<Claims> ListUserClaims(User user)
+    {
+        return _context.Claims.Where(c => c.User.Id == user.Id).ToList();
+    }
+
+    private string ComputeHash(string password, HashAlgorithm hashAlgorithm)
     {
         byte[] inputBytes = Encoding.UTF8.GetBytes(password);
-        byte[] hashedBytes = sHA256.ComputeHash(inputBytes);
+        byte[] hashedBytes = hashAlgorithm.ComputeHash(inputBytes);
 
         var builder = new StringBuilder();
 
