@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestAPI.Hypermedia.Filters;
+using Serilog;
 
 [ApiVersion("1")]
 [Authorize(Policy = "AdminPolicy")] // =>por padrão já barra devido a configuração na program, mas com isso se consegue colocar mais uma trava, para casos de roles especificas
@@ -26,7 +27,26 @@ public class PersonController : ControllerBase
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult FindAll()
     {
-        return Ok(_personBusiness.FindAll());
+        var pessoas = _personBusiness.FindAll();
+        return Ok(pessoas);
+    }
+
+    [HttpGet("{sortDirection}/{pageSize}/{page}")]
+    //!anotação abaixo é para uso do swagger
+    [ProducesResponseType((200), Type = typeof(List<PersonVO>))]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [TypeFilter(typeof(HyperMediaFilter))]
+    public IActionResult FindPaged(
+        [FromQuery] string name,
+        string sortDirection,
+        int pageSize,
+        int page
+    )
+    {
+        var pessoas = _personBusiness.FindWIthPagedSearch(name, sortDirection, pageSize, page);
+        return Ok(pessoas);
     }
 
     [HttpGet("{id}")]
@@ -39,6 +59,19 @@ public class PersonController : ControllerBase
     public IActionResult FindById(long id)
     {
         var person = _personBusiness.FindById(id);
+        return person == null ? NotFound() : Ok(person);
+    }
+
+    [HttpGet("findPersonByName")]
+    //!anotação abaixo é para uso do swagger
+    [ProducesResponseType((200), Type = typeof(PersonVO))]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [TypeFilter(typeof(HyperMediaFilter))]
+    public IActionResult FindByName([FromQuery] string firstName, [FromQuery] string lastName)
+    {
+        var person = _personBusiness.FindBYName(firstName, lastName);
         return person == null ? NotFound() : Ok(person);
     }
 

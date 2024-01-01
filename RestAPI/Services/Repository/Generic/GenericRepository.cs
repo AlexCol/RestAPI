@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Crypto.Prng;
+using Serilog;
 
 public class GenericRepository<T> : IRepository<T> where T : BaseEntity
 {
@@ -56,5 +58,27 @@ public class GenericRepository<T> : IRepository<T> where T : BaseEntity
         _context.Entry(itemAtual).CurrentValues.SetValues(item);
         _context.SaveChanges();
         return item;
+    }
+
+    public List<T> FindWithPagedSearch(string query)
+    {
+        return dataset.FromSqlRaw<T>(query).ToList();
+    }
+
+    public int GetCount(string query)
+    {
+        var result = "";
+        using (var connection = _context.Database.GetDbConnection())
+        {
+            connection.Open();
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = query;
+                Log.Error(query);
+                result = command.ExecuteScalar().ToString();
+            }
+        }
+
+        return int.Parse(result);
     }
 }

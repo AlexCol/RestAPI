@@ -9,13 +9,17 @@ namespace RestAPI.Hypermedia.Extensions
         public static string getLink(this string path, long id, IUrlHelper urlHelper, string format)
         {
 
-            var url = new { controller = path, id };
-            string completePath = new StringBuilder(urlHelper.Link("DefaultApi", url)).Replace("%2F", "/").ToString();
-            if (format == HttpActionVerb.PUT || format == HttpActionVerb.POST)
+            Object obj = new();
+            lock (obj)
             {
-                completePath = completePath.Substring(0, completePath.LastIndexOf('/'));
+                var url = new { controller = path, id };
+                string completePath = new StringBuilder(urlHelper.Link("DefaultApi", url)).Replace("%2F", "/").ToString();
+                if (format == HttpActionVerb.PUT || format == HttpActionVerb.POST)
+                {
+                    completePath = completePath.Substring(0, completePath.LastIndexOf('/'));
+                }
+                return completePath;
             }
-            return completePath;
         }
     }
 }

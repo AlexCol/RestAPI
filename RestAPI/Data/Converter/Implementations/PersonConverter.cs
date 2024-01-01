@@ -1,3 +1,5 @@
+using RestAPI.Hypermedia;
+
 public class PersonConverter : IParser<PersonVO, Person>, IParser<Person, PersonVO>
 {
     public Person Parse(PersonVO origem)

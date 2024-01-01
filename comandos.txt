@@ -57,7 +57,9 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer -v 6.0.25
 -Então em Program adicionado as dependencias de login
 -Criado em Controllers a classe AuthController para controle da criação e atualização do token (deixando a anotação para uso dela sem autenticação)
 
-
+//query param
+-Adicionada chamada findPersonByName na classe PersonBusines, PersonRepository e nao Controler.
+-No controller então é usado por queryParam o recebimento das informações (que por sua vez são opcionais, e devem ser tratadas dessa forma)
 
 /*por conta*/
 criada classe Claims
