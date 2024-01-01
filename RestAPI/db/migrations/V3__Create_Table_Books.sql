@@ -1,6 +1,7 @@
-CREATE TABLE IF NOT EXISTS `books` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `title` varchar(80) NOT NULL,
-  `author` varchar(80) NOT NULL,
-  PRIMARY KEY (`id`)
-) 
+CREATE TABLE `books` (
+  `id` INT(10) AUTO_INCREMENT PRIMARY KEY,
+  `author` longtext,
+  `launch_date` datetime(6) NOT NULL,
+  `price` decimal(65,2) NOT NULL,
+  `title` longtext
+);

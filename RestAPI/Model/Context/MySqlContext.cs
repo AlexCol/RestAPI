@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RestAPI.Model;
+using RestWithASPNETErudio.Model;
 
 public class MySqlContext : DbContext //IdentityDbContext<IdentityUser> =>esse para o caso de desejar que o aspnet crie as tabelas de identificações
 {
@@ -11,6 +12,7 @@ public class MySqlContext : DbContext //IdentityDbContext<IdentityUser> =>esse p
     public MySqlContext(DbContextOptions<MySqlContext> options) : base(options) { }
 
     public DbSet<Person> Persons { get; set; }
+    public DbSet<Book> Books { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Claims> Claims { get; set; }
 

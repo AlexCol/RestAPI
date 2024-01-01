@@ -17,6 +17,9 @@ using RestAPI.Services.Crypto;
 using RestAPI.Services.Crypto.Implementation;
 using RestAPI.Services.Repository;
 using RestAPI.Services.Repository.Generic;
+using RestWithASPNETErudio.Business;
+using RestWithASPNETErudio.Business.Implementations;
+using RestWithASPNETErudio.Hypermedia.Enricher;
 using Serilog;
 using Serilog.Events;
 
@@ -54,6 +57,7 @@ if (builder.Environment.IsDevelopment())
 //! adicionando servicos personalizados
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IPersonBusiness, PersonBusiness>();
+builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 //! versionamento de API
@@ -74,6 +78,7 @@ builder.Services.AddMvc(options =>
 //! injetando dependencias para uso de HATEOAS
 var filterOptions = new HyperMediaFilterOptions();
 filterOptions.ContentRsponseEnticherList.Add(new PersonEnricher());
+filterOptions.ContentRsponseEnticherList.Add(new BookEnricher());
 builder.Services.AddSingleton(filterOptions);
 
 string appName = "Minha API Rest";
