@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 public class GenericRepository<T> : IRepository<T> where T : BaseEntity
 {
-    private MySqlContext _context;
+    protected MySqlContext _context;
     private DbSet<T> dataset;
 
     public GenericRepository(MySqlContext context)

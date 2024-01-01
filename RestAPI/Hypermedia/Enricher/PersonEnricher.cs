@@ -37,6 +37,14 @@ namespace RestAPI.Hypermedia.Enricher
             });
             content.Links.Add(new HyperMediaLink()
             {
+                Action = HttpActionVerb.PATCH,
+                //! v1*/ Href = link,
+                Href = path.getLink(content.Id, urlHelper, HttpActionVerb.PATCH),
+                Rel = RelationType.self,
+                Type = ResponseTypeFormat.DefaultPatch
+            });
+            content.Links.Add(new HyperMediaLink()
+            {
                 Action = HttpActionVerb.DELETE,
                 //! v1*/ Href = link,
                 Href = path.getLink(content.Id, urlHelper, HttpActionVerb.DELETE),

@@ -16,6 +16,7 @@ using RestAPI.Services.Business.Implementations;
 using RestAPI.Services.Crypto;
 using RestAPI.Services.Crypto.Implementation;
 using RestAPI.Services.Repository;
+using RestAPI.Services.Repository.Generic;
 using Serilog;
 using Serilog.Events;
 
@@ -53,6 +54,7 @@ if (builder.Environment.IsDevelopment())
 //! adicionando servicos personalizados
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IPersonBusiness, PersonBusiness>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 
 //! versionamento de API
 builder.Services.AddApiVersioning();
@@ -137,11 +139,17 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization(auth =>
 {
+
+    auth.DefaultPolicy = new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+        .RequireAuthenticatedUser()
+        .Build();
+    /*
     auth.FallbackPolicy = new AuthorizationPolicyBuilder()
         .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
         .RequireAuthenticatedUser()
         .Build();
-
+    */
     auth.AddPolicy("AdminPolicy", a =>
         a.RequireAuthenticatedUser().RequireClaim("Role", "Admin"));
 });
@@ -170,7 +178,7 @@ app.UseHttpsRedirection();
 app.UseCors();
 
 //! adicionando dependencias para login
-app.UseAuthentication(); //!deve vir antes de pp.UseAuthorization(); e principalmente se desejar usar alguma policy pra controle de acesso (tipo por papel: ex admin)
+app.UseAuthentication(); //!deve vir antes de pp.UseAuthorization();
 //? fim custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.UseAuthorization();
@@ -185,6 +193,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{appDescription} - {appVersion}");
+
 });
 var option = new RewriteOptions();
 option.AddRedirect("^$", "swagger");

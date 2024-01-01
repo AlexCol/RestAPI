@@ -8,7 +8,8 @@ public class PersonConverter : IParser<PersonVO, Person>, IParser<Person, Person
             origem.FirstName,
             origem.LastName,
             origem.Address,
-            origem.Gender
+            origem.Gender,
+            origem.Enabled
         );
     }
     public PersonVO Parse(Person origem)
@@ -20,7 +21,8 @@ public class PersonConverter : IParser<PersonVO, Person>, IParser<Person, Person
             FirstName = origem.FirstName,
             LastName = origem.LastName,
             Address = origem.Address,
-            Gender = origem.Gender
+            Gender = origem.Gender,
+            Enabled = origem.Enabled
         };
     }
 

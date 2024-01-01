@@ -16,19 +16,23 @@ public class Person : BaseEntity
     [Column("gender")]
     public string Gender { get; set; }
 
+    [Column("enabled")]
+    public bool Enabled { get; set; }
+
     public Person() { }
 
-    public Person(long id, string firstName, string lastName, string address, string gender) : this(firstName, lastName, address, gender)
+    public Person(long id, string firstName, string lastName, string address, string gender, bool enabled) : this(firstName, lastName, address, gender, enabled)
     {
         Id = id;
     }
 
-    public Person(string firstName, string lastName, string address, string gender)
+    public Person(string firstName, string lastName, string address, string gender, bool enabled)
     {
         FirstName = firstName;
         LastName = lastName;
         Address = address;
         Gender = gender;
+        Enabled = enabled;
         Validate();
     }
 

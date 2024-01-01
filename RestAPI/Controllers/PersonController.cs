@@ -28,6 +28,7 @@ public class PersonController : ControllerBase
     {
         return Ok(_personBusiness.FindAll());
     }
+
     [HttpGet("{id}")]
     //!anotação abaixo é para uso do swagger
     [ProducesResponseType((200), Type = typeof(PersonVO))]
@@ -40,6 +41,7 @@ public class PersonController : ControllerBase
         var person = _personBusiness.FindById(id);
         return person == null ? NotFound() : Ok(person);
     }
+
     [HttpPost()]
     //!anotação abaixo é para uso do swagger
     [ProducesResponseType((200), Type = typeof(PersonVO))]
@@ -54,6 +56,7 @@ public class PersonController : ControllerBase
             personCreated
         );
     }
+
     [HttpPut()]
     //!anotação abaixo é para uso do swagger
     [ProducesResponseType((200), Type = typeof(PersonVO))]
@@ -69,6 +72,17 @@ public class PersonController : ControllerBase
         var person = _personBusiness.Update(personBody);
         return Ok(person);
     }
+
+    [HttpPatch("{id}")]
+    //!anotação abaixo é para uso do swagger
+    [ProducesResponseType((200), Type = typeof(PersonVO))]
+    [TypeFilter(typeof(HyperMediaFilter))]
+    public IActionResult Disable(long id)
+    {
+        var person = _personBusiness.Disable(id);
+        return person == null ? NotFound() : Ok(person);
+    }
+
     [HttpDelete("{id}")]
     //!anotação abaixo é para uso do swagger
     [ProducesResponseType(204)]
