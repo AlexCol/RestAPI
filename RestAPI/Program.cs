@@ -159,8 +159,11 @@ builder.Services.AddAuthorization(auth =>
         a.RequireAuthenticatedUser().RequireClaim("Role", "Admin"));
 });
 
-//? fim custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//! adicionando injeções para manipulação de arquivos
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<IFileBusiness, FileBusiness>();
 
+//? fim custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //! Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -168,6 +171,19 @@ builder.Services.AddEndpointsApiExplorer();
 //! (padrão gerado, ajustado foi criado dentro de custom injections) builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+/*
+foreach (var item in builder.Services)
+{
+    if (item.ServiceType.ToString().Contains("IHttpContextAccessor"))
+    {
+        Log.Warning(item.ServiceType.ToString());
+    }
+    else
+    {
+        Log.Error(item.ServiceType.ToString());
+    }
+}
+*/
 
 //! Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

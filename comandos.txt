@@ -66,3 +66,15 @@ criada classe Claims
 ajustado em db context a validação dela e criação da chave (principalmente para uso de migrations)
 adicionados comandos para criação da tabela e primeira carga para migration manual
 -adicionada função em UserRepository para buscar as Claims do usuário
+
+
+----trabalhando com arquivos (download e upload)
+-Criada pasta UploadDir
+-Em Data/VO criada class FileDetailVO
+-Em services
+--Criada interface IFileBusiness
+---Em Implementations criada FileBusiness
+-Adicionado novo controller FileController
+-Adicionando Injeções a classe Program
+/*pra testar, o arquivo é enviado no 'body', mudar pra 'form-data', em key escolher o tipo 'file'*/
+/*para o download do arquivo, deixar a função do controller como void, pois estaremos mexendo na response já, e vamos 'lockar' ela ao escrever no body, então se fizer qualquer retorno, vai ocorrer uma exceção*/
