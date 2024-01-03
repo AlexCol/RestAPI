@@ -49,10 +49,10 @@ builder.Host.UseSerilog((context, configuration) =>
 var conectionString = builder.Configuration["ConnectionStrings:MySql"];
 builder.Services.AddMySql<MySqlContext>(conectionString, ServerVersion.AutoDetect(conectionString));
 
-if (builder.Environment.IsDevelopment())
-{
-    MigrateDatabase(conectionString);
-}
+// if (builder.Environment.IsDevelopment())
+// {
+//     MigrateDatabase(conectionString);
+// }
 
 //! adicionando servicos personalizados
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));

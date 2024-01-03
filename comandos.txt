@@ -78,3 +78,28 @@ adicionados comandos para criação da tabela e primeira carga para migration ma
 -Adicionando Injeções a classe Program
 /*pra testar, o arquivo é enviado no 'body', mudar pra 'form-data', em key escolher o tipo 'file'*/
 /*para o download do arquivo, deixar a função do controller como void, pois estaremos mexendo na response já, e vamos 'lockar' ela ao escrever no body, então se fizer qualquer retorno, vai ocorrer uma exceção*/
+
+----adicionando suporte ao docker
+https://code.visualstudio.com/docs/containers/quickstart-aspnet-core
+então realizar ajustes no arquivo docker-compose.yml
+--tbm ajustar appsettings.json para o acesso ao banco de dados
+
+---para subir a aplicação
+docker-compose up -d --build 
+
+--pra verificar os containers
+docker-compose ps
+
+--pra ver os logs
+docker logs CONTAINER_ID
+
+quando usar docker: "MySql": "Server=db; Database=rest_with_asp_net_udemy; user=root; password=docker; SslMode=none"
+quando usar local: "MySql": "Server=localhost; Database=rest_with_asp_net_udemy; user=root; password=ale123"
+
+-pra envio pro DOckerHub
+$ docker login docker.io
+$ docker tag restapi:latest wackoalex/restapi:latest
+$ docker tag restapi:latest wackoalex/restapi-db:latest
+
+$ docker push wackoalex/restapi
+$ docker push wackoalex/restapi-db
