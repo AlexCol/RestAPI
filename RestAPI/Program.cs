@@ -49,10 +49,10 @@ builder.Host.UseSerilog((context, configuration) =>
 var conectionString = builder.Configuration["ConnectionStrings:MySql"];
 builder.Services.AddMySql<MySqlContext>(conectionString, ServerVersion.AutoDetect(conectionString));
 
-// if (builder.Environment.IsDevelopment())
-// {
-//     MigrateDatabase(conectionString);
-// }
+if (builder.Environment.IsDevelopment())
+{
+    MigrateDatabase(conectionString);
+}
 
 //! adicionando servicos personalizados
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
@@ -162,6 +162,10 @@ builder.Services.AddAuthorization(auth =>
 //! adicionando injeções para manipulação de arquivos
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IFileBusiness, FileBusiness>();
+
+//! adicionando injeções para manipulação de arquivos em banco (criado por mim)
+builder.Services.AddScoped<ISavedFileRepository, SavedFileRepository>();
+builder.Services.AddScoped<ISavedFileBusiness, SavedFileBusiness>();
 
 //? fim custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

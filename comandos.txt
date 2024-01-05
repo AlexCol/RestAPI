@@ -79,6 +79,9 @@ adicionados comandos para criação da tabela e primeira carga para migration ma
 /*pra testar, o arquivo é enviado no 'body', mudar pra 'form-data', em key escolher o tipo 'file'*/
 /*para o download do arquivo, deixar a função do controller como void, pois estaremos mexendo na response já, e vamos 'lockar' ela ao escrever no body, então se fizer qualquer retorno, vai ocorrer uma exceção*/
 
+
+
+
 ----adicionando suporte ao docker
 https://code.visualstudio.com/docs/containers/quickstart-aspnet-core
 então realizar ajustes no arquivo docker-compose.yml
@@ -103,3 +106,9 @@ $ docker tag restapi:latest wackoalex/restapi-db:latest
 
 $ docker push wackoalex/restapi
 $ docker push wackoalex/restapi-db
+
+
+/*migration*/
+dotnet ef migrations add 'minhaPrimeiraMigration'
+dotnet ef database update --(realiza carga do migration criado pro banco de dados)
+```
