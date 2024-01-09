@@ -112,3 +112,11 @@ $ docker push wackoalex/restapi-db
 dotnet ef migrations add 'minhaPrimeiraMigration'
 dotnet ef database update --(realiza carga do migration criado pro banco de dados)
 ```
+
+adicionado comando em program pra buscar o link desejado quando criar a pasta release
+//! ajuste da URL usada para produção, pois não é buscado por padrão do launchsettings
+
+para criar a pasta de release
+dotnet publish "./RestAPI.csproj" -c Release
+
+///database@123

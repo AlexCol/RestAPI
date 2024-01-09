@@ -167,12 +167,22 @@ builder.Services.AddScoped<IFileBusiness, FileBusiness>();
 builder.Services.AddScoped<ISavedFileRepository, SavedFileRepository>();
 builder.Services.AddScoped<ISavedFileBusiness, SavedFileBusiness>();
 
+//! ajuste da URL usada para produção, pois não é buscado por padrão do launchsettings
+// Log.Error(builder.Environment.EnvironmentName);
+// if (builder.Environment.IsProduction())
+// {
+//     string apiUrl = builder.Configuration.GetSection("ProductionUrl:applicationUrl").Value ?? "http://localhost:5001";
+//     builder.WebHost.UseUrls(apiUrl);
+// }
+
 //? fim custom injections //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //! Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //! (padrão gerado, ajustado foi criado dentro de custom injections) builder.Services.AddSwaggerGen();
+
+
 
 var app = builder.Build();
 /*
