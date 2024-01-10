@@ -1,0 +1,10 @@
+.cabecalho {
+    text-align: center;
+    color: blueviolet;    
+    transition: 0.5s;
+}
+
+.cabecalho:hover {
+    background-color: blueviolet;
+    color: white;    
+}

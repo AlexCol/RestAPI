@@ -1,0 +1,13 @@
+para criar o projeto (sem chaves) usando typescript:
+npx create-react-app {nome da pasta a ser criada} --template typescript
+
+para executar:
+acessar a pasta
+-cd {nome da pasta a ser criada}
+-npm start
+
+--Criar arquivo '.env' na pasta raiz com a porta para mudar a porta padrão que o react será executado
+--Criar arquivo Global.d.ts dentro da pasta SRC para declarar modulos a serem importados (para uso de css)
+
+--para consumir rotas
+npm install react-router-dom

@@ -1,0 +1,44 @@
+/*
+import React, { useState } from 'react';
+import Header from './Components/Header';
+
+/* //forma 1
+export default function App() {
+  return (
+    <Header title="Client REST Udemy Uau"/>
+  );
+}
+*/
+
+//forma 2
+/*
+export default function App() {
+  return (
+    <Header>
+      Propriedades
+      <h1>Client REST Udemy Uau2</h1>
+      <h3>Agora é h3</h3>
+    </Header>
+  );
+}
+*/
+
+/*
+export default function App() {
+  const [counter, setCounter] = useState(0);
+
+  function increment() {
+    setCounter(counter+1);
+  }
+
+  return (    
+    
+    <div>
+      <Header counter={counter}/>
+      <div >
+        <button onClick={increment} className='btn btn-info'>Adicionar</button>
+      </div>      
+    </div>
+  );
+}
+*/
