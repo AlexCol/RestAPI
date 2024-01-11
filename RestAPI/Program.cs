@@ -18,8 +18,8 @@ using RestAPI.Services.Crypto.Implementation;
 using RestAPI.Services.Repository;
 using RestAPI.Services.Repository.Generic;
 using RestWithASPNETErudio.Business;
-using RestWithASPNETErudio.Business.Implementations;
 using RestWithASPNETErudio.Hypermedia.Enricher;
+using RestWithASPNETUdemy.Business.Implementations;
 using Serilog;
 using Serilog.Events;
 
