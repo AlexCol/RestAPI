@@ -23,8 +23,11 @@ export default function Books() {
         price: number
     }
     const [books, setBooks] = useState<book[]>([]);
+    const [page, setPage] = useState(1);
+
     const userName = localStorage.getItem("userName");
     const navigate = useNavigate();
+    
     const accesToken = localStorage.getItem('accesToken');
     const configAxios: AxiosRequestConfig = {
         headers: {
@@ -33,8 +36,14 @@ export default function Books() {
     }
 
     useEffect(() => {
-        api.get('/Book/asc/20/1', configAxios).then(response => setBooks(response.data.list))
+        fechtMoreBooks();
     }, [accesToken]);
+
+    async function fechtMoreBooks() {
+        const response:any = await api.get(`/Book/asc/4/${page}`, configAxios);
+        setBooks([...books, ...response.data.list]);
+        setPage(page+1);
+    }
     
     async function logout() {
         try {
@@ -95,6 +104,7 @@ export default function Books() {
                 </li>                         
                 ))}                
             </ul>
+            <button className='button' onClick={fechtMoreBooks} type='button'>Load more</button>
         </div>
     );
 }

@@ -74,7 +74,6 @@ public class GenericRepository<T> : IRepository<T> where T : BaseEntity
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = query;
-                Log.Error(query);
                 result = command.ExecuteScalar().ToString();
             }
         }

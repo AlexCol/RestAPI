@@ -58,10 +58,10 @@ export default function NewBook () {
     }
   }
   
-  async function CreateNewBook(e: React.FormEvent) {
+  async function SaveOrUpdate(e: React.FormEvent) {
     e.preventDefault();
 
-    const data = {
+    const data:any = {
       title,
       author,
       launchDate,
@@ -69,7 +69,13 @@ export default function NewBook () {
     };
 
     try {      
-      await api.post('Book', data, configHeader);
+      if(bookId === '0') {
+        await api.post('Book', data, configHeader);
+      } else {
+        //pra poder adicionar novas propriedades, deve-se declarar o item, nesse caso o data, como any.
+        data.id = bookId;
+        await api.put('Book', data, configHeader);
+      }
 
       alert("Livro salvo com Sucesso!");
       navigate("/books")
@@ -83,14 +89,15 @@ export default function NewBook () {
         <div className="content">
             <section className="form">
                 <img src={logoImage} alt="Logo"/>
-                <h1>Add New Book</h1>
-                <p>Enter the book information and click on 'Add'!</p>
+                <h1>{(bookId === '0' ? 'Add New Book' : 'Update Book')}</h1>
+                <p>Enter the book information and click on '{(bookId === '0' ? 'Add' : 'Update')}'!</p>
                 <Link className='back-link' to="/books">
                     <FiArrowDownLeft size={16} color="blueviolet"/>
+                    Back to Books
                 </Link>
             </section>
 
-            <form onSubmit={CreateNewBook}>
+            <form onSubmit={SaveOrUpdate}>
               <input
                 placeholder="Title" 
                 value={title}
@@ -119,7 +126,7 @@ export default function NewBook () {
                 required
               />
 
-              <button type="submit" className='button'>Add</button>
+              <button type="submit" className='button'>{(bookId === '0' ? 'Add' : 'Update')}</button>
             </form>
         </div>
     </div>
