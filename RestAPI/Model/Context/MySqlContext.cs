@@ -19,9 +19,12 @@ public class MySqlContext : DbContext //IdentityDbContext<IdentityUser> =>esse p
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
         base.OnModelCreating(modelBuilder);
         modelBuilder.Ignore<Notification>(); //!para ifgnorar os erros se usar a função de notificação
 
+
+        //https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties?tabs=fluent-api%2Cwithout-nrt
         modelBuilder.Entity<Person>()
             .Property(p => p.FirstName).IsRequired();
 
